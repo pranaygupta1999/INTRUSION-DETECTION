@@ -1,0 +1,212 @@
+*{
+    margin: 0;
+    padding: 0;
+    color:#7d8086;
+    font-family: sans-serif;
+}
+body{
+    background-color: #21232f;
+    
+}
+.navbar
+{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    background-color: #272d3b;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.name
+{
+    color: #f60237;
+    margin-right: auto;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-app-region: drag;
+}
+.option
+{
+    background-color: #2e364d;
+    width: 70px;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.closetag
+{
+    
+    width: 60px;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #f60237;
+    font-weight: bold;
+    font-size: 15px;
+    
+}
+.app
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 730px;
+}
+
+.console
+{
+    margin-top: 20px;
+    height: 20rem;
+    width: 40rem;
+    border-radius: 0px;
+    background: #21232f;
+    box-shadow:  33px 33px 66px #1c1e28, 
+                -33px -33px 66px #262836;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+#container {
+    margin-left: 60px;
+    width: 200px;
+    height: 200px;
+    
+    }
+
+.c2
+{
+      
+    height: 22rem;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.date
+{
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: auto;
+    font-size: 15px;
+    color: #555763;
+    
+}
+.isp{
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #555763;
+    
+}
+.ip{
+      margin-left: auto;
+      margin-top: auto;
+      margin-right: 10px;
+      font-size: 13px;
+      color: #555763;
+      
+}
+.type
+{
+    color: #f60237;
+    font-weight: bold;
+}
+
+.date,.ip,.isp{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+
+.myButton {
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:11px 24px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+    margin-left: 20px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.again
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.sidebar
+                {
+                    display:flex;
+                    flex-direction: column;
+                    justify-content:start;
+                    align-items: center;
+                    width: 70px;
+                    background-color: #2e364d;
+                    height: 470px;
+                    margin-left: 0%;
+                }
+                .sidebar p{
+                    margin-top: 5px;
+                }
+                .side1-2, .side2-2
+                {
+                    height: 70px;
+                    font-size: 10px;
+                    width: inherit;
+                    display:flex;
+                    flex-direction: column;
+                    justify-content:center;
+                    align-items: center;
+                }
+                .side2-2{
+                    background-color: #2e364d;
+                } 
+                .side1-2{
+                    background-color: #21232f;
+                }
+                .app-body
+                {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 0px;
+                    
+                }
+
