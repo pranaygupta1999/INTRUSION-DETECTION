@@ -1,5 +1,3 @@
-import mytext from '../Results_knn.js';
-import myt from '../result.js'
 import React, { Component } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
