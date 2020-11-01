@@ -1,7 +1,11 @@
+import mytext from '../Results_knn.js';
+import myt from '../result.js'
 import React, { Component } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
 const {ipcRenderer} = window.require("electron");
+
+// import mytext from '../Results_knn.js';
 
 export default class App extends Component
 {
@@ -12,22 +16,43 @@ export default class App extends Component
           arg: ""
         };
         this.handleClick = this.handleClick.bind(this);
+        console.log(this.state.arg);
     }
 
     componentDidMount() {
       ipcRenderer.on("result", (event, arg) => {
+        // arg.join('\n');
+        // arg = arg[0];
+        // arg.toString();
+        
+        // this.setState({
+        //     arg: arg
+        // })
+        const newText = arg.split('\n').map(str => <p>{str}</p>);
         this.setState({
-            arg: arg
-        })
+          arg: newText
       })
+      })
+      console.log(this.state.arg);
+
+      // const newText = myt.split('\n');
+    //   const newText = mytext.split('\n').map(str => <p>{str}</p>);
+    //   this.setState({
+    //     arg: newText
+    // })
     }
+    
 
     handleClick(){
-        ipcRenderer.send("result", "hello");
+        ipcRenderer.send("result", );
+        // console.log("sdf");
+        // console.log(this.state.arg);
     }
 
     render()
     {
+      console.log("this.state.arg");
+
       const {arg} = this.state;
         return(
 
@@ -69,9 +94,9 @@ export default class App extends Component
                       <td>94</td>
                     </tr>  */}
                   </table> 
-        {arg}
                   <button onClick={this.handleClick}></button>    
-
+{arg}
+{/* {myt} */}
             </div>
         
              </div>

@@ -7,14 +7,18 @@ var filepath = "../Results_knn.txt"
 
 ipcMain.on("result", (event, arg) => {
     console.log(arg);
+    // let reader = new FileReader;
+
     fs.readFile(filepath, 'utf-8', (err, data) => {
         if(err){
             console.log("An error ocurred reading the file :" + err.message);
             return;
         }
+        // datan = data.split();
+        // datan.join('\n');
 
         // Change how to handle the file content
-        console.log("The file content is : " + data);
+        // console.log("The file content is : " + datan);
         event.sender.send("result", data);
     });
 })
@@ -33,3 +37,11 @@ function createWindow(){
     win.loadURL('http://localhost:3000/home')
 }
 app.on('ready', createWindow)
+
+app.on('window-all-closed', () => {
+    // On macOS it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') {
+      app.quit()
+    }
+  })
