@@ -74,27 +74,15 @@ export default class App extends Component
                </div>
         
                <div class="tablediv">
+               <p class="type">Scan report</p>
+               
+               <div class="displaybox">
+               {arg}
+               {/* {myt} */}
+               </div>
                 
-                <table >
-                    <tr>
-                      <th>Timestamp</th>
-                      <th>Detection</th>
-                      <th>Accuracy</th>
-                    </tr>
-                    {/* <tr>
-                      <td>Jill</td>
-                      <td>Smith</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>Eve</td>
-                      <td>Jackson</td>
-                      <td>94</td>
-                    </tr>  */}
-                  </table> 
                   <button onClick={this.handleClick}></button>    
-{arg}
-{/* {myt} */}
+
             </div>
         
              </div>

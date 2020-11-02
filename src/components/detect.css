@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    color:#7d8086;
+    color:#f60237;
     font-family: sans-serif;
 }
 body{
@@ -81,7 +81,8 @@ body{
 }
 
 #container {
-    margin-left: 60px;
+    margin-top: 100px;
+    margin-left: 90px;
     width: 200px;
     height: 200px;
     
@@ -94,8 +95,9 @@ body{
     width: 20rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
 }
 .date
 {
@@ -127,6 +129,16 @@ body{
 {
     color: #f60237;
     font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.type1
+{
+    
+    font-weight: bold;
+    margin-top: 10px;
+    color: #f60237;
+    
 }
 
 .date,.ip,.isp{
@@ -180,9 +192,12 @@ body{
                     background-color: #2e364d;
                     height: 470px;
                     margin-left: 0%;
+                    color:#7d8086;
+                    
                 }
                 .sidebar p{
                     margin-top: 5px;
+                    color:#7d8086;
                 }
                 .side1-2, .side2-2
                 {
@@ -193,12 +208,15 @@ body{
                     flex-direction: column;
                     justify-content:center;
                     align-items: center;
+                    color:#7d8086;
                 }
                 .side2-2{
                     background-color: #2e364d;
+                    color:#7d8086;
                 } 
                 .side1-2{
                     background-color: #21232f;
+                    color:#7d8086;
                 }
                 .app-body
                 {
@@ -209,4 +227,22 @@ body{
                     margin-left: 0px;
                     
                 }
+                i{
+                    color:#7d8086;
+                }
 
+
+                .con1{
+                    font-size: 50px;
+                
+                cursor: pointer;
+                color: #f60237;
+                font-weight: bold;
+                }
+                .con2
+                {
+                    font-size: 12px;
+                    font-weight: bold;
+                    margin-top: 5px;
+                    color:#7d8086;
+                }

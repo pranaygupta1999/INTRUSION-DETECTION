@@ -1,0 +1,2 @@
+Malware Packets : 30
+Normal Packets: 26

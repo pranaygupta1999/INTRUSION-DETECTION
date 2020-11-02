@@ -1,50 +1,54 @@
-import React, {useState, useEffect} from 'react'
+import React, { Component } from 'react';
 import { Link, useHistory } from 'react-router-dom'
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
+const {ipcRenderer} = window.require("electron");
 
+// import mytext from '../Results_knn.js';
 
+export default class App extends Component
+{
 
-// const percentage = 66;
+  constructor(props)
+  {
+      super(props);
+      this.state = {
+        arg1: "",
+        arg2: ""
+      };
+      this.handleClick = this.handleClick.bind(this);
+      console.log(this.state.arg1);
+  }
 
-function Detect() {
+  componentDidMount() {
+    ipcRenderer.on("packets", (event, arg1) => {
+     
+      const newText = arg1.split('\n').map(str => <p>{str}</p>);
+      this.setState({
+        arg1: newText
+    })
+    })
+    console.log(this.state.arg1);
 
-  const [percentage, setPercent] = useState(0);
+    ipcRenderer.on("persentage", (event, arg2) => {
+     
+      const newText = arg2.split('\n').map(str => <p>{str}</p>);
+      this.setState({
+        arg2: newText
+    })
+    })
 
-  useEffect(() => {
-    
-    //       var bar = new ProgressBar.Circle(container, {
-    // color: '#aaa',
-    // // This has to be the same size as the maximum width to
-    // // prevent clipping
-    // strokeWidth: 4,
-    // trailWidth: 1,
-    // easing: 'easeInOut',
-    // duration: 1400,
-    // text: {
-    //   autoStyleContainer: false
-    // },
-    // from: { color: '#21232f', width: 0},
-    // to: { color: '#f60237', width: 4 },
-    // // Set default step function for all animate calls
-    // step: function(state, circle) {
-    //   circle.path.setAttribute('stroke', state.color);
-    //   circle.path.setAttribute('stroke-width', state.width);
+  }
+  handleClick(){
+      // ipcRenderer.send("packets", );
+      // ipcRenderer.send("persentage", );
+      ipcRenderer.send("run_script",)
+  }
 
-    //   var value = Math.round(circle.value() * 100);
-    //   if (value === 0) {
-    //     circle.setText('0%');
-    //   } else {
-    //     circle.setText(value+"%");
-    //   }
-
-    // }
-    // });
-    // bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-    // bar.text.style.fontSize = '25px';
-  });
-
-    return (
+    render()
+    {
+      const {arg1} = this.state;
+      const {arg2} = this.state;
+        return (
         <div>
   <body>
     <nav class="navbar">
@@ -68,37 +72,17 @@ function Detect() {
       <div class="app">
         <div class="console">
             <div id="container">
-            <CircularProgressbar
-  value={percentage}
-  text={`${percentage}%`}
-  styles={buildStyles({
-    // Rotation of path and trail, in number of turns (0-1)
-    rotation: 0.25,
- 
-    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-    strokeLinecap: 'butt',
- 
-    // Text size
-    textSize: '16px',
- 
-    // How long animation takes to go from one percentage to another, in seconds
-    pathTransitionDuration: 0.5,
- 
-    // Can specify path transition in more detail, or remove it entirely
-    // pathTransition: 'none',
- 
-    // Colors
-    pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
-    textColor: '#f88',
-    trailColor: '#d6d6d6',
-    backgroundColor: '#3e98c7',
-  })}
-/>
+        <p class="con1">{arg2}</p>
+              <p class="con2">Intrusion chance</p>
             </div>
             <div class="c2">
             <p class="date">
             </p>
             <p class="type">YOU ARE UNDER ATTACK</p>
+            <div class="type1">
+              {arg1}
+              </div>
+            
             
             <p id="ip"  class="ip"></p>
             <p id="isp" class="isp"></p>
@@ -106,7 +90,8 @@ function Detect() {
         </div>
         <div class="again">
           <p>Start scan again ?</p>
-          <Link to="/home" class="myButton">Start</Link>
+          <a class="myButton" onClick={this.handleClick}>start</a>
+          {/* <Link to="/home" class="myButton">Start</Link> */}
         </div>
         
     </div>
@@ -126,5 +111,4 @@ function Detect() {
   </div>
         )
     }
-    
-    export default Detect
+}
