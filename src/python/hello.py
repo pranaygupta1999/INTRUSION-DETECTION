@@ -1,6 +1,8 @@
 import sys
+import time
 with open("detect2.txt","w+") as f:
-    f.write("88%")
+    time.sleep(3)
+    f.write("98%")
     print('Hello from Python!')
     f.close()
 sys.stdout.flush()
