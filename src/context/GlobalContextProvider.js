@@ -8,14 +8,24 @@ export default class GlobalContextProvider extends Component {
         this.state = {
             maliciousPacketCount: 0,
             totalPacketCount: 1,
-            isScanning: false
+            isScanning: false,
+            reportData: []
         }
     }
     componentDidMount() {
         ipcRenderer.on("packets", (event, maliciousPacketCount, totalPacketCount) => {
+            const element = (<tr>
+                <td>{Date.now()}</td>
+                <td>{maliciousPacketCount}</td>
+                <td>{totalPacketCount - maliciousPacketCount}</td>
+                <td>{(maliciousPacketCount / totalPacketCount * 100).toFixed(2)}</td>
+            </tr>);
+            let temp = [...this.state.reportData]
+            temp.push(element);
             this.setState({
                 maliciousPacketCount: maliciousPacketCount,
                 totalPacketCount: totalPacketCount,
+                reportData: temp,
             })
         })
     }

@@ -28,8 +28,8 @@ export default class App extends Component {
   }
 
   render() {
-    const maliciousPacket = <p>{this.context.maliciousPacketCount}</p>
-    const percentage = <p>{(this.context.maliciousPacketCount / this.context.totalPacketCount * 100).toFixed(2)}</p>
+    const maliciousPacket = this.context.maliciousPacketCount;
+    const percentage = (this.context.maliciousPacketCount / this.context.totalPacketCount * 100).toFixed(2);
     return (
       <div>
         <body>
@@ -60,7 +60,7 @@ export default class App extends Component {
                 <div class="c2">
                   <p class="date">
                   </p>
-                  <p class="type">YOU ARE UNDER ATTACK</p>
+                  {percentage > 75.0 ? <p class="type">YOU ARE UNDER ATTACK</p> : <p class="type" style={{color: "green"}}>SYSTEM IS SAFE</p>}
                   <div class="type1">
                     {maliciousPacket}
                   </div>
@@ -70,12 +70,6 @@ export default class App extends Component {
                   <p id="isp" class="isp"></p>
                 </div>
               </div>
-              <div class="again">
-                <p>Start scan again ?</p>
-                <a class="myButton" onClick={this.handleClick}>Start</a>
-                {/* <Link to="/home" class="myButton">Start</Link> */}
-              </div>
-
             </div>
 
           </div>
