@@ -55,6 +55,7 @@ ipcMain.on("run_script", (event, arg) => {
         return;
     }
     var python = require('child_process').spawn('python', ['-u','./src/python/main.py']);
+    // var python = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
     python.stdout.on('data',function(data){
         isScanning = true;
         var outputLine = data.toString('utf8');
