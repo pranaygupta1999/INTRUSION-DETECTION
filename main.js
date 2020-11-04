@@ -6,6 +6,7 @@ var fs = require('fs'); // Load the File System to execute our common tasks (CRU
 var filepath = "../Results_knn.txt"
 var filepath1 = "./detect1.txt"
 var filepath2 = "./detect2.txt"
+var isScanning = false;
 
 ipcMain.on("result", (event, arg) => {
     console.log(arg);
@@ -49,29 +50,38 @@ ipcMain.on("result", (event, arg) => {
 
 ipcMain.on("run_script", (event, arg) => {
     // let reader = new FileReader;
-    var python = require('child_process').spawn('python', ['./src/python/hello.py']);
+    if (isScanning) {
+        console.log("scan is already running");
+        return;
+    }
+    var python = require('child_process').spawn('python', ['-u','./src/python/main.py']);
     python.stdout.on('data',function(data){
-        console.log("data: ",data.toString('utf8'));
+        isScanning = true;
+        var outputLine = data.toString('utf8');
+        if( outputLine.split(' ')[0] == "UI-DATA" && outputLine.split(' ').length == 3)
+            event.sender.send("packets", outputLine.split(' ')[1], outputLine.split(' ')[2])
+        process.stdout.write(outputLine);
+        
         // event.sender.send("render_again");
             //packets info
-        fs.readFile(filepath1, 'utf-8', (err, detect1) => {
-            if(err){
-                console.log("An error ocurred reading the file :" + err.message);
-                return;
-            }
+        // fs.readFile(filepath1, 'utf-8', (err, detect1) => {
+        //     if(err){
+        //         console.log("An error ocurred reading the file :" + err.message);
+        //         return;
+        //     }
 
-            event.sender.send("packets", detect1);
-        });
+        //     event.sender.send("packets", detect1);
+        // });
 
-        //percent
-        fs.readFile(filepath2, 'utf-8', (err, detect2) => {
-            if(err){
-                console.log("An error ocurred reading the file :" + err.message);
-                return;
-            }
+        // //percent
+        // fs.readFile(filepath2, 'utf-8', (err, detect2) => {
+        //     if(err){
+        //         console.log("An error ocurred reading the file :" + err.message);
+        //         return;
+        //     }
             
-            event.sender.send("persentage", detect2);
-        });
+        //     event.sender.send("persentage", detect2);
+        // });
     });
 
 });
