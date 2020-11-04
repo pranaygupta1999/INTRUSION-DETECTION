@@ -1,0 +1,9 @@
+===================================================MODEL USED : KNN===================================================================
+No. of packets = 2
+
+
+malware packets============================================::::
+no of malware packets0
+Normal packets===============================================::::
+no of normal packets1
+Normal Packet detected in packet no:1
