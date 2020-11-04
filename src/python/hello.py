@@ -6,8 +6,10 @@ import time
 #     print('Hello from Python!')
 #     f.close()
 # sys.stdout.flush()
-T = 5
-while(T):
-    print("bello porld")
-    time.sleep(1)
-    T-=1
+import random
+
+while(True):
+    a = random.randint(1, 800)
+    b = random.randint(a,1000)
+    print("UI-DATA",a, b)
+    time.sleep(5)
