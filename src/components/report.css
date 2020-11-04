@@ -1,98 +1,102 @@
 .sidebar
-            {
-                display:flex;
-                flex-direction: column;
-                justify-content:start;
-                align-items: center;
-                width: 70px;
-                background-color: #2e364d;
-                height: 470px;
-                margin-left: 0%;
-            }
-            .sidebar p{
-                margin-top: 5px;
-            }
-            .side1, .side2
-            {
-                height: 70px;
-                font-size: 10px;
-                width: inherit;
-                display:flex;
-                flex-direction: column;
-                justify-content:center;
-                align-items: center;
-            }
-            .side2{
-                background-color: #21232f;
-            }
-            .side1{
-                background-color:#2e364d ;
-            }
-            .app-body
-            {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                margin-left: 0px;
-                
-            }
+{
+    display:flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items: center;
+    width: 70px;
+    background-color: #2e364d;
+    height: 470px;
+    margin-left: 0%;
+}
+.sidebar p{
+    margin-top: 5px;
+}
+.side1, .side2
+{
+    height: 70px;
+    font-size: 10px;
+    width: inherit;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.side2{
+    background-color: #21232f;
+}
+.side1{
+    background-color:#2e364d ;
+}
+.app-body
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 0px;
+    
+}
 
-            .tablediv
-            {
-                width: 730px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                
-                margin-top: 0px;
-            }
-            table {
-              font-family: arial, sans-serif;
-              border-collapse: collapse;
-              width: 100%;
-              
-              
-              
-            }
-            
-            td, th {
-              
-              text-align: center;
-              padding: 8px;
-            }
-            th{
-                color: #f60237;
-            }
+.tablediv
+{
+    width: 730px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
-            .button
-            {
-                background-color:#f60237;
-                border-radius:28px;
-                border:1px solid #f60237;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family:Arial;
-                font-size:13px;
-                padding:11px 24px;
-                text-decoration:none;
-                margin-top: 250px;
-                
-            }
+td, th {
+    
+    text-align: center;
+    padding: 8px;
+}
+th{
+    color: #f60237;
+    font-size: 15px;
+    font-weight: bold;
+}
+td{
+    color:#7d8086;
+    font-size: 13px;
+    font-weight: bold;
 
-            .displaybox
-        {
-            height: 350px;
-            width: 400px;
-            font-size: 12px;
-            margin-top: 30px;
-            overflow: hidden;
-            overflow-y: scroll;
-            color: #f60237;
-        }
-        ::-webkit-scrollbar {
-            width: 0px;  /* Remove scrollbar space */
-            background: transparent;  /* Optional: just make scrollbar invisible */
-        }   
+}
+
+.button
+{
+    background-color:#f60237;
+    border-radius:28px;
+    border:1px solid #f60237;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:13px;
+    padding:11px 24px;
+    text-decoration:none;
+    margin-top: 250px;
+    
+}
+
+.displaybox
+{
+    height: 405px;
+    width: 700px;
+    font-size: 12px;
+    margin-top: 30px;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}

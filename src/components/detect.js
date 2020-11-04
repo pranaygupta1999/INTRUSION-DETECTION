@@ -8,6 +8,8 @@ const { ipcRenderer } = window.require("electron");
 
 export default class App extends Component {
 
+ 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +30,12 @@ export default class App extends Component {
   }
 
   render() {
+    var greencolor = {
+       color : '#44c767'
+    }
     const maliciousPacket = this.context.maliciousPacketCount;
     const percentage = (this.context.maliciousPacketCount / this.context.totalPacketCount * 100).toFixed(2);
+    const normalPacket = (this.context.totalPacketCount - this.context.maliciousPacketCount)
     return (
       <div>
         <body>
@@ -60,9 +66,11 @@ export default class App extends Component {
                 <div class="c2">
                   <p class="date">
                   </p>
-                  {percentage > 75.0 ? <p class="type">YOU ARE UNDER ATTACK</p> : <p class="type" style={{color: "green"}}>SYSTEM IS SAFE</p>}
+                  {percentage > 75.0 ? <p class="type">YOU ARE UNDER ATTACK</p> : <p class="type" style={greencolor}>SYSTEM IS SAFE</p>}
                   <div class="type1">
-                    {maliciousPacket}
+                    <p class="color"> Malware Packets : {maliciousPacket}</p>
+                    <p class="color">Normal Packets  : {normalPacket}</p>
+
                   </div>
 
 

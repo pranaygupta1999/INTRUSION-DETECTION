@@ -32,20 +32,21 @@ export default class Report extends Component {
                 <p>Report</p>
               </div>
             </div>
+            <div class="displaybox">
+              <div class="tablediv">
 
-            <div class="tablediv">
+                <table >
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Malicious Packet</th>
+                    <th>Normal Packet</th>
+                    <th>Percentage</th>
+                  </tr>
+                  {reportData.length > 0 ? reportData : null}
+                </table>
 
-              <table >
-                <tr>
-                  <th>Timestamp</th>
-                  <th>Malicious Packet</th>
-                  <th>Normal Packet</th>
-                  <th>Percentage</th>
-                </tr>
-                {reportData.length > 0 ? reportData : null}
-              </table>
-
-              <a href="#" class="button">Stop</a>
+                {/* <a href="#" class="button">Stop</a> */}
+              </div>
             </div>
 
           </div>
@@ -59,4 +60,3 @@ export default class Report extends Component {
     )
   }
 }
-

@@ -23,10 +23,10 @@ function Home() {
                 <Link to="/report"><i class="far fa-chart-bar fa-3x"></i></Link>
                  <p>Report</p>
                </div>
-               <div class="side2-2">
+               {/* <div class="side2-2">
                 <Link to="/trial"><i class="far fa-chart-bar fa-3x"></i></Link>
                  <p>Trial</p>
-               </div>
+               </div> */}
             </div>
 
             <div class="app">

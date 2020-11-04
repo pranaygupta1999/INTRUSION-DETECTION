@@ -244,5 +244,11 @@ body{
                     font-size: 12px;
                     font-weight: bold;
                     margin-top: 5px;
+                    margin-left: 10px;
+                    color:#7d8086;
+                }
+
+                .color
+                {
                     color:#7d8086;
                 }
