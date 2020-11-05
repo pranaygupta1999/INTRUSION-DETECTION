@@ -8,30 +8,44 @@ const { ipcRenderer } = window.require("electron");
 
 export default class App extends Component {
 
- 
+
 
   constructor(props) {
     super(props);
     this.state = {
       arg1: "",
-      arg2: ""
+      arg2: "",
+      footerTextMessage: "",
+      isScanning: true
     };
     this.handleClick = this.handleClick.bind(this);
     console.log(this.state.arg1);
   }
   static contextType = GlobalContext;
   componentDidMount() {
+    const self = this;
+    ipcRenderer.on("processStopped", (event, message) => {
+      console.log(message)
+      self.setState({
+        footerTextMessage: message,
+        isScanning: false,
+      })
+    })
     this.handleClick();
   }
   handleClick() {
     // ipcRenderer.send("packets", );
     // ipcRenderer.send("persentage", );
-    ipcRenderer.send("run_script",)
+    this.setState({
+      footerTextMessage: "",
+      isScanning: true,
+    })
+    ipcRenderer.send("run_script")
   }
 
   render() {
     var greencolor = {
-       color : '#44c767'
+      color: '#44c767'
     }
     const maliciousPacket = this.context.maliciousPacketCount;
     const percentage = (this.context.maliciousPacketCount / this.context.totalPacketCount * 100).toFixed(2);
@@ -68,16 +82,25 @@ export default class App extends Component {
                   </p>
                   {percentage > 75.0 ? <p class="type">YOU ARE UNDER ATTACK</p> : <p class="type" style={greencolor}>SYSTEM IS SAFE</p>}
                   <div class="type1">
-                    <p class="color"> Malware Packets : {maliciousPacket}</p>
+                    <p class="color"> Malicious Packets : {maliciousPacket}</p>
                     <p class="color">Normal Packets  : {normalPacket}</p>
 
                   </div>
 
-
+                  {!this.state.isScanning && <p>{this.state.footerTextMessage}</p>}
                   <p id="ip" class="ip"></p>
                   <p id="isp" class="isp"></p>
                 </div>
               </div>
+              {!this.state.isScanning && [
+                <p style={{ marginTop: "10px", color: "whitesmoke" }}>Msg: {this.state.footerTextMessage}</p>,
+                <div class="again">
+                  <br />
+                  <p>Start scan again ?</p>
+                  <a class="myButton" onClick={this.handleClick}>Start</a>
+                  {/* <Link to="/home" class="myButton">Start</Link> */}
+                </div>
+              ]}
             </div>
 
           </div>

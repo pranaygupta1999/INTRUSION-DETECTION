@@ -7,7 +7,7 @@ var filepath = "../Results_knn.txt"
 var filepath1 = "./detect1.txt"
 var filepath2 = "./detect2.txt"
 var isScanning = false;
-
+var captureProcess = undefined;
 ipcMain.on("result", (event, arg) => {
     console.log(arg);
     // let reader = new FileReader;
@@ -19,6 +19,23 @@ ipcMain.on("result", (event, arg) => {
         }
         event.sender.send("result", data);
     });
+});
+
+ipcMain.on("stopProcess", (event, reason) => {
+    console.log("Process Stop request received")
+    if (captureProcess && captureProcess.pid || isScanning) {
+        isScanning = !captureProcess.kill("SIGKILL");
+    }
+
+    isScanning = false;
+    let message ="";
+    if (reason == 'detected') {
+        message = "Wifi has been turned off for security"
+        require('child_process').exec('rfkill block wifi');
+    }
+    else
+        message = "Scanning stopped by user";
+    event.sender.send("processStopped", message);
 });
 // ipcMain.on("packets", (event, arg1) => {
 
@@ -54,9 +71,9 @@ ipcMain.on("run_script", (event, arg) => {
         console.log("scan is already running");
         return;
     }
-    var python = require('child_process').spawn('python', ['-u', './src/python/main.py']);
+    captureProcess = require('child_process').spawn('python', ['-u', './src/python/main.py']);
     // var python = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
-    python.stdout.on('data', function (data) {
+    captureProcess.stdout.on('data', function (data) {
         isScanning = true;
         var outputLine = data.toString('utf8');
         if (outputLine.split(' ')[0] == "UI-DATA" && outputLine.split(' ').length == 3)
