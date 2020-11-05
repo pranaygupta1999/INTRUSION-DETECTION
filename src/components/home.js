@@ -1,7 +1,12 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { GlobalContext } from '../context/GlobalContextProvider';
 
 function Home() {
+    const context = useContext(GlobalContext);
+    let handleStart = () => {
+        context.startScanning();
+    }
     return (
         <div>
        
@@ -32,7 +37,7 @@ function Home() {
             <div class="app">
                 <div class="shield"><i class="fas fa-shield-alt fa-9x"></i></div>
                <p class="text">System is safe</p>
-               <Link to="/detect" class="myyButton">Start</Link>
+               <Link to="/detect" class="myyButton" onClick={handleStart.bind(this)}>Start</Link>
                </div>
         </div>
         <script src="index.js"></script>

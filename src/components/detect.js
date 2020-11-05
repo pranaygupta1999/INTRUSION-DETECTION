@@ -7,42 +7,30 @@ const { ipcRenderer } = window.require("electron");
 // import mytext from '../Results_knn.js';
 
 export default class App extends Component {
-
-
-
   constructor(props) {
     super(props);
     this.state = {
-      arg1: "",
-      arg2: "",
       footerTextMessage: "",
-      isScanning: true
-    };
-    this.handleClick = this.handleClick.bind(this);
-    console.log(this.state.arg1);
+    }
+    this.handleClick = this.handleStart.bind(this);
   }
   static contextType = GlobalContext;
   componentDidMount() {
     const self = this;
     ipcRenderer.on("processStopped", (event, message) => {
-      console.log(message)
       self.setState({
         footerTextMessage: message,
-        isScanning: false,
       })
     })
-    this.handleClick();
+
   }
-  handleClick() {
-    // ipcRenderer.send("packets", );
-    // ipcRenderer.send("persentage", );
-    this.setState({
-      footerTextMessage: "",
-      isScanning: true,
-    })
-    ipcRenderer.send("run_script")
+  handleStart() {
+    this.context.startScanning();
   }
 
+  handleStop() {
+    this.context.stopScanning();
+  }
   render() {
     var greencolor = {
       color: '#44c767'
@@ -87,20 +75,26 @@ export default class App extends Component {
 
                   </div>
 
-                  {!this.state.isScanning && <p>{this.state.footerTextMessage}</p>}
+                  {!this.context.isScanning && <p>{this.state.footerTextMessage}</p>}
                   <p id="ip" class="ip"></p>
                   <p id="isp" class="isp"></p>
                 </div>
               </div>
-              {!this.state.isScanning && [
-                <p style={{ marginTop: "10px", color: "whitesmoke" }}>Msg: {this.state.footerTextMessage}</p>,
+              {this.context.isScanning ?
                 <div class="again">
                   <br />
-                  <p>Start scan again ?</p>
-                  <a class="myButton" onClick={this.handleClick}>Start</a>
+                  <p>Start Scanning ?</p>
+                  <a class="myButton" onClick={this.handleStop.bind(this)}>Stop</a>
                   {/* <Link to="/home" class="myButton">Start</Link> */}
-                </div>
-              ]}
+                </div> : [
+                  <p style={{ marginTop: "10px", color: "whitesmoke" }}>{this.state.footerTextMessage}</p>,
+                  <div class="again">
+                    <br />
+                    <p>Start scan again ?</p>
+                    <a class="myButton" onClick={this.handleStart.bind(this)}>Start</a>
+                    {/* <Link to="/home" class="myButton">Start</Link> */}
+                  </div>
+                ]}
             </div>
 
           </div>

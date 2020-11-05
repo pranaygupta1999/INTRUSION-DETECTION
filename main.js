@@ -22,7 +22,6 @@ ipcMain.on("result", (event, arg) => {
 });
 
 ipcMain.on("stopProcess", (event, reason) => {
-    console.log("Process Stop request received")
     if (captureProcess && captureProcess.pid || isScanning) {
         isScanning = !captureProcess.kill("SIGKILL");
     }
@@ -72,7 +71,7 @@ ipcMain.on("run_script", (event, arg) => {
         return;
     }
     captureProcess = require('child_process').spawn('python', ['-u', './src/python/main.py']);
-    // var python = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
+    // captureProcess = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
     captureProcess.stdout.on('data', function (data) {
         isScanning = true;
         var outputLine = data.toString('utf8');
@@ -116,6 +115,8 @@ function createWindow() {
     })
 
     win.loadURL('http://localhost:3000/home')
+    //For Dev env only
+    // win.webContents.openDevTools();
 }
 app.on('ready', createWindow)
 
