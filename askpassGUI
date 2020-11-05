@@ -1,0 +1,2 @@
+#!/bin/bash
+zenity --password --title="Type your password" --text="We need administrator super user permission to capture network traffic"
