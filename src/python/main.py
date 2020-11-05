@@ -28,7 +28,7 @@ while(True):
     print("running")
 
     capture = pyshark.LiveCapture(interface=interface, output_file='./Pcaps_Legitimate/new_dump.pcap')
-    capture.sniff(timeout=10)
+    capture.sniff(packet_count=500)
     os.system("/usr/bin/env python3 CreateData.py") 
     captureFile = open("./features_1.csv")
     captureFile.readline()
