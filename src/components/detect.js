@@ -69,6 +69,7 @@ export default class App extends Component {
                   <p class="date">
                   </p>
                   {percentage > 75.0 ? <p class="type">YOU ARE UNDER ATTACK</p> : <p class="type" style={greencolor}>SYSTEM IS SAFE</p>}
+                  {/* {percentage > 75 ? underAttack()} */}
                   <div class="type1">
                     <p class="color"> Malicious Packets : {maliciousPacket}</p>
                     <p class="color">Normal Packets  : {normalPacket}</p>

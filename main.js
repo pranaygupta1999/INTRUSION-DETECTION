@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, Notification } = require('electron')
 // var remote = require('remote'); // Load remote compnent that contains the dialog dependency
 // var dialog = remote.require('dialog'); // Load the dialogs component of the OS
 var fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
@@ -21,6 +21,15 @@ ipcMain.on("result", (event, arg) => {
     });
 });
 
+//notify body
+function showNotification (message) {
+    const notification = {
+      title: 'Alert Stopped scanning',
+      body: message
+    }
+    new Notification(notification).show()
+  }
+
 ipcMain.on("stopProcess", (event, reason) => {
     if (captureProcess && captureProcess.pid || isScanning) {
         isScanning = !captureProcess.kill("SIGKILL");
@@ -34,6 +43,8 @@ ipcMain.on("stopProcess", (event, reason) => {
     }
     else
         message = "Scanning stopped by user";
+    
+    showNotification(message);
     event.sender.send("processStopped", message);
 });
 // ipcMain.on("packets", (event, arg1) => {
@@ -70,6 +81,11 @@ ipcMain.on("run_script", (event, arg) => {
         console.log("scan is already running");
         return;
     }
+    const notification = {
+        title: 'Started Scan',
+        body: 'in background'
+      }
+    new Notification(notification).show()
     captureProcess = require('child_process').spawn('python', ['-u', './src/python/main.py']);
     // captureProcess = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
     captureProcess.stdout.on('data', function (data) {
