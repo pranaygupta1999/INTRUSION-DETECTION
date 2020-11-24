@@ -30,7 +30,7 @@ export default class GlobalContextProvider extends Component {
                 totalPacketCount: totalPacketCount,
                 reportData: temp,
             });
-            if (percentage > 65) {
+            if (percentage > 72) {
                 this.stopScanning("detected");
             }
         })
