@@ -9,7 +9,11 @@ import time
 import random
 
 while(True):
-    a = random.randint(1, 800)
-    b = random.randint(a,1000)
+    #For Normal results
+    a = random.randint(1, 40)
+    b = random.randint(a,250)
+    # #For Malicious Results
+    # a = random.randint(1, 200)
+    # b = random.randint(a,a+10)
     print("UI-DATA",a, b)
     time.sleep(5)
