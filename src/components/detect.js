@@ -84,7 +84,7 @@ export default class App extends Component {
               {this.context.isScanning ?
                 <div class="again">
                   <br />
-                  <p>Start Scanning ?</p>
+                  <p>Stop Scanning ?</p>
                   <a class="myButton" onClick={this.handleStop.bind(this)}>Stop</a>
                   {/* <Link to="/home" class="myButton">Start</Link> */}
                 </div> : [

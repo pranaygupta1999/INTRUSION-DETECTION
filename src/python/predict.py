@@ -40,13 +40,13 @@ with open("Results_knn.txt","w+") as f:
     f.write("No. of packets = "+str(test_data.shape[0])+"\n")
     f.write("\n"*2)
 
-    f.write("malware packets============================================::::"+"\n")
-    f.write("no of malware packets"+str(len(packet_no_attack))+"\n")
+    f.write("Malicious packets============================================::::"+"\n")
+    f.write("no of Malicious packets"+str(len(packet_no_attack))+"\n")
     
 
     
     for x in packet_no_attack:
-        f.write("Malware detected in packet no:"+str(x)+"\n"*2)
+        f.write("Malicious detected in packet no:"+str(x)+"\n"*2)
 
 
     f.write("Normal packets===============================================::::"+"\n")
