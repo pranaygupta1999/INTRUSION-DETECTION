@@ -86,8 +86,11 @@ ipcMain.on("run_script", (event, arg) => {
         body: 'in background'
       }
     new Notification(notification).show()
-    captureProcess = require('child_process').spawn('python', ['-u', './src/python/main.py']);
-    // captureProcess = require('child_process').spawn('py', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
+    // Use below if launching with sudo permission
+    // captureProcess = require('child_process').spawn('python', ['-u', './src/python/main.py']);
+    // Use below if not using sudo permission but first set environment variable "sudopassword" eg "export sudopassword="mypassword"
+    captureProcess = require('child_process').exec(`echo ${process.env.sudopassword} | sudo -S env PATH="$PATH" python -u './src/python/main.py'`);
+    // captureProcess = require('child_process').spawn('python', ['-u','./src/python/hello.py']); //Comment above line and uncomment this line for windows
     captureProcess.stdout.on('data', function (data) {
         isScanning = true;
         var outputLine = data.toString('utf8');
